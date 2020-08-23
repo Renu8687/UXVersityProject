@@ -1,0 +1,82 @@
+create database SampleDB
+use SampleDB
+--create table UserTable
+--(Name Varchar(50),
+--Address varchar (max)
+--)
+--Sp_helpDB SampleDB
+--Sp_helpDB usertable
+--select*from UserTable
+--insert into UserTable values('Ashish','Lucknow')
+
+
+create table UsersTable
+(
+Uid int primary key,
+Name varchar(50),
+Email Varchar(50),
+Address varchar(30),
+Contact Varchar(50),
+)
+
+create table ProductTable
+(
+Pid int primary key,
+ProductName varchar(50),
+Price int,
+Quantity int,
+)
+
+create table OrderTable
+(
+Oid int primary key,
+uid int References UsersTable(Uid),
+Pid int references ProductTable(pid),
+)
+select*from UsersTable
+select*from ProductTable
+select*from OrderTable
+
+insert into UsersTable Values(1,'Rahul','Rt81718543@gmail.com','Luckonw',852741)
+insert into UsersTable Values(2,'Ashish','Ashishat09@gmail.com','Sitapur',963852)
+
+insert into ProductTable Values(100,'Oil',200,10)
+insert into ProductTable Values(200,'Shampoo',250,10)
+
+insert into OrderTable Values(1000,1,100)
+insert into OrderTable Values(1001,2,100)
+insert into OrderTable Values(1002,2,200)
+Create proc Allorders
+as
+begin
+select o.Oid,u.Name,u.Email,u.Address,u.Contact,p.ProductName,p.Price
+from OrderTable o
+join UsersTable u
+on o.uid=u.Uid
+join ProductTable p
+on o.Pid=p.Pid
+end
+
+exec Allorders
+
+create table EmployeeTable
+(
+EmpID int Primary key identity(1,1),
+Name varchar(50),
+Address varchar(50),
+Gender varchar(50)
+)
+select*from EmployeeTable
+insert into EmployeeTable values ('Ashish','Sitapur','M')
+insert into EmployeeTable values ('Rahul','lucknow','M','74185')
+insert into EmployeeTable values ('Ashish','Sitapur','M','8543915231')
+
+update EmployeeTable set Name='Brijesh' where EmpID=1
+
+alter table EmployeeTable add contact varchar(50)
+
+delete EmployeeTable where EmpID=3 
+
+truncate table EmployeeTable
+
+drop table EmployeeTable

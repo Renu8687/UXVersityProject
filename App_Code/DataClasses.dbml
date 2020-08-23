@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="uxversitDB" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\uxversitDB.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="uxversitDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.AddBlogTable" Member="AddBlogTables">
+    <Type Name="AddBlogTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BlogTitle" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ThumbnailPic" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Pic1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Pic2" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Pic3" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="DeveloperTable_AddBlogTable" Member="DeveloperTable" ThisKey="CreatedBy" OtherKey="Id" Type="DeveloperTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DeveloperTable" Member="DeveloperTables">
+    <Type Name="DeveloperTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Contact" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="DeveloperTable_AddBlogTable" Member="AddBlogTables" ThisKey="Id" OtherKey="CreatedBy" Type="AddBlogTable" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserTable" Member="UserTables">
+    <Type Name="UserTable">
+      <Column Name="UId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Contact" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FeedbackTable" Member="FeedbackTables">
+    <Type Name="FeedbackTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Subject" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DemoTable" Member="DemoTables">
+    <Type Name="DemoTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DemoTitle" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DemoSource" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AdminTable" Member="AdminTables">
+    <Type Name="AdminTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AdminEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CategoryTable" Member="CategoryTables">
+    <Type Name="CategoryTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CatName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Pic" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="CategoryTable_ToolTable" Member="ToolTables" ThisKey="Id" OtherKey="Cat" Type="ToolTable" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ToolTable" Member="ToolTables">
+    <Type Name="ToolTable">
+      <Column Name="TId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Cat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ToolName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ThumbPic" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Content1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Pic1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Content2" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Pic2" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Content3" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Pic3" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Content4" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Pic4" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="MianContent" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="SourceCode" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="CategoryTable_ToolTable" Member="CategoryTable" ThisKey="Cat" OtherKey="Id" Type="CategoryTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
